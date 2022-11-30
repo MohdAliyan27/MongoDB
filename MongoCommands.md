@@ -1,4 +1,4 @@
-<h1>Basic Commands for MongoDB:<h1>
+#Basic Commands for MongoDB:
 
 mongosh
 Open a connection to your local MongoDB instance. All other commands
@@ -25,7 +25,7 @@ Delete the current database
 exit 
 Exit the mongosh session
 
-#Create
+##Create
 Each of these commands is run on a specific collection
 Ex. db.<collectionName>.<command>
 insertOne
