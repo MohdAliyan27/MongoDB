@@ -26,12 +26,14 @@ exit
 Exit the mongosh session
 
 ##Create
+
 Each of these commands is run on a specific collection
 Ex. db.<collectionName>.<command>
+
 insertOne
-db.users.insertOne({ name: “Kyle” })
+db.users.insertOne({ name: “Aliyan” })
 Create a new document inside the specified collection
-Add a new document with the name of Kyle into the users collection
+Add a new document with the name of Aliyan into the users collection
 insertMany
 db.users.insertMany([{ age: 26 }, { age: 20 }])
 Create multi new documents inside a specific collection
@@ -44,28 +46,28 @@ db.users.find()
 Get all documents
 Get all users
 find(<filterObject>)
-db.users.find({ name: “Kyle” })
+db.users.find({ name: “Aliyan” })
 db.users.find({ “address.street”: “123 Main St” })
 Find all documents that match the filter object
-Get all users with the name Kyle
+Get all users with the name Aliyan
 Get all users whose adress field has a street field with the value 123 Main St
 find(<filterObject>, <selectObject>)
-db.users.find({ name: “Kyle” }, { name: 1, age: 1 })
+db.users.find({ name: “Aliyan” }, { name: 1, age: 1 })
 db.users.find({}, { age: 0 })
 Find all documents that match the filter object but only
 return the field specified in the select object
-Get all users with the name Kyle but only return their name, age, and _id
+Get all users with the name Aliyan but only return their name, age, and _id
 Get all users and return all columns except for age
 findOne
-db.users.findOne({ name: “Kyle” })
+db.users.findOne({ name: “Aliyan” })
 The same as find, but only return the first document that
 matches the filter object
-Get the first user with the name Kyle
+Get the first user with the name Aliyan
 countDocuments
-db.users.countDocuments({ name: “Kyle” })
+db.users.countDocuments({ name: “Aliyan” })
 Return the count of the documents that match the filter
 object passed to it
-Get the number of users with the name Kyle
+Get the number of users with the name Aliyan
 Update
 Each of these commands is run on a specific collection
 db.<collectionName>.<command>
@@ -102,13 +104,13 @@ Delete all users with an age of 12
 Complex Filter Object
 Any combination of the below can be use inside a filter object to make complex queries
 $eq
-db.users.find({ name: { $eq: “Kyle” } })
+db.users.find({ name: { $eq: “Aliyan” } })
 Check for equality
-Get all users with the name Kyle
+Get all users with the name Aliyan
 $ne
-db.users.find({ name: { $ne: “Kyle” } })
+db.users.find({ name: { $ne: “Aliyan” } })
 Check for not equal
-Get all users with a name other than Kyle
+Get all users with a name other than Aliyan
 $gt / $gte
 db.users.find({ age: { $gt: 12 } })
 db.users.find({ age: { $gte: 15 } })
@@ -122,70 +124,89 @@ Check for less than and less than or equal to
 Get all users with an age less than 12
 Get all users with an age less than or equal to 15
 $in
-db.users.find({ name: { $in: [“Kyle”, “Mike”] } })
+db.users.find({ name: { $in: [“Aliyan”, “Mike”] } })
 Check if a value is one of many values
-Get all users with a name of Kyle or Mike
+Get all users with a name of Aliyan or Mike
 $nin
-db.users.find({ name: { $nin: [“Kyle”, “Mike”] } })
+db.users.find({ name: { $nin: [“Aliyan”, “Mike”] } })
 Check if a value is none of many values
-Get all users that do not have the name Kyle or Mike
+Get all users that do not have the name Aliyan or Mike
+
+  
 $and
-db.users.find({ $and: [{ age: 12 }, { name: “Kyle” }] })
-db.users.find({ age: 12, name: “Kyle” })
+db.users.find({ $and: [{ age: 12 }, { name: “Aliyan” }] })
+db.users.find({ age: 12, name: “Aliyan” })
 Check that multiple conditions are all true
-Get all users that have an age of 12 and the name Kyle
+Get all users that have an age of 12 and the name Aliyan
 This is an alternative way to do the same thing. Generally you do not need $and.
-$ordb.users.find({ $or: [{ age: 12 }, { name: “Kyle” }] })
+$ordb.users.find({ $or: [{ age: 12 }, { name: “Aliyan” }] })
 Check that one of multiple conditions is true
-Get all users with a name of Kyle or an age of 12
+Get all users with a name of Aliyan or an age of 12
+
+  
 $not
-db.users.find({ name: { $not: { $eq: “Kyle” } } })
+db.users.find({ name: { $not: { $eq: “Aliyan” } } })
 Negate the filter inside of $not
-Get all users with a name other than Kyle
+Get all users with a name other than Aliyan
+
+  
 $existsdb.users.find({ name: { $exists: true } })
 Check if a field exists
 Get all users that have a name field
+
+  
 $exprdb.users.find({ $expr: { $gt: [“$balance”, “$debt”] } })
 Do comparisons between different fields
 Get all users that have a balance that is greater than their debt
 Complex Update Object
 Any combination of the below can be use inside an update object to make complex updates
+
+  
 $set
 db.users.updateOne({ age: 12 }, { $set: { name: “Hi” } })
 Update only the fields passed to $set. This will not affect
 any fields not passed to $set.
 Update the name of the first user with the age of 12 to the value Hi
+
 $inc
 db.users.updateOne({ age: 12 }, { $inc: { age: 2 } })
 Increment the value of the field by the amount given
 Add 2 to the age of the first user with the age of 12
+
 $rename
 db.users.updateMany({}, { $rename: { age: “years” } })
 Rename a field
 Rename the field age to years for all users
+
 $unset
 db.users.updateOne({ age: 12 }, { $unset: { age: “” } })
 Remove a field
 Remove the age field from the first user with an age of 12
+
+  
 $push
 db.users.updateMany({}, { $push: { friends: “John” } })
 Add a value to an array field
 Add John to the friends array for all users
+
 $pull
 db.users.updateMany({}, { $pull: { friends: “Mike” } })
 Remove a value from an array field
 Remove Mike from the friends array for all users
 Read Modifiers
 Any combination of the below can be added to the end of any read operation
+
 sort
 db.users.find().sort({ name: 1, age: -1 })
 Sort the results of a find by the given fields
 Get all users sorted by name in alphabetical order and then if any names are the
 same sort by age in reverse order
+
 limit
 db.users.find().limit(2)
 Only return a set number of documents
 Only return the first 2 users
+
 skip
 db.users.find().skip(4)
 Skip a set number of documents from the beginning
